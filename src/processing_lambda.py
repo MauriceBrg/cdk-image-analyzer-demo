@@ -23,9 +23,15 @@ def lambda_handler(event: dict, context: "LambdaContext") -> None:
     
     print(json.dumps(event))
 
+    # Initialize the boto3 client to talk to rekognition
     rekognition_client = boto3.client("rekognition")
-    table = boto3.resource("dynamodb").Table(os.environ.get(ENV_METADATA_TABLE_NAME))
+
+    # Initialize a boto3 resource as an abstraction of the dynamo db table
+    table = boto3.resource("dynamodb").Table(
+        os.environ.get(ENV_METADATA_TABLE_NAME)
+    )
     
+    # Parse the s3 event, see above
     for bucket_name, object_key in parse_s3_event(event):
         
         response = rekognition_client.detect_labels(
@@ -37,8 +43,9 @@ def lambda_handler(event: dict, context: "LambdaContext") -> None:
             }
         )
         
-        print(json.dumps(response))
+        print("Rekognition response:", json.dumps(response))
         
+        # Flatten the response structure
         labels = []
         for item in response["Labels"]:
             labels.append({
@@ -48,6 +55,7 @@ def lambda_handler(event: dict, context: "LambdaContext") -> None:
 
             })
 
+        # Store the item in the metadata table
         table.put_item(
             Item={
                 "PK": object_key,

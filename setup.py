@@ -10,13 +10,13 @@ setuptools.setup(
     name="cdk_image_analyzer",
     version="0.0.1",
 
-    description="An empty CDK Python app",
+    description="A CDK demo app",
     long_description=long_description,
     long_description_content_type="text/markdown",
 
-    author="author",
+    author="Maurice Borgmeier",
 
-    package_dir={"": "cdk_image_analyzer"},
+    package_dir={"": "infrastructure"},
     packages=setuptools.find_packages(where="cdk_image_analyzer"),
 
     install_requires=[

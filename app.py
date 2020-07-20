@@ -2,7 +2,7 @@
 
 from aws_cdk import core
 
-from cdk_image_analyzer.cdk_image_analyzer_stack import CdkImageAnalyzerStack
+from infrastructure.cdk_image_analyzer_stack import CdkImageAnalyzerStack
 
 
 app = core.App()

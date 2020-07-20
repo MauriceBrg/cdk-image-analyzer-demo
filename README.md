@@ -59,3 +59,11 @@ Things this demo shows
 
 ![x-ray](docs/x-ray_1.png)
 ![x-ray](docs/x-ray_2.png)
+
+### 4) CDK App
+
+1. Open the CDK App and explain the separation of the business logic (`src` directory) from the infrastructure
+2. Explain how the CDK makes permissions management a lot easier using `grants` and point out the additional IAM statement to allow access to Rekognition.
+3. Run `cdk synth` to show the output that gets passed to CloudFormation
+4. Change something on the infrastructure, e.g. add an S3 bucket and run `cdk diff` to show what changed
+5. Run `cdk deploy` to update the architecture
