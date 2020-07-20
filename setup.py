@@ -1,5 +1,6 @@
 import setuptools
 
+CDK_VERSION="1.51.0"
 
 with open("README.md") as fp:
     long_description = fp.read()
@@ -19,7 +20,12 @@ setuptools.setup(
     packages=setuptools.find_packages(where="cdk_image_analyzer"),
 
     install_requires=[
-        "aws-cdk.core==1.49.1",
+        f"aws-cdk.aws-dynamodb=={CDK_VERSION}",
+        f"aws-cdk.aws-lambda=={CDK_VERSION}",
+        f"aws-cdk.aws-lambda-event-sources=={CDK_VERSION}",
+        f"aws-cdk.aws-s3=={CDK_VERSION}",
+        f"aws-cdk.core=={CDK_VERSION}",
+        "lambda-bundler==0.1.0",
     ],
 
     python_requires=">=3.6",
